@@ -331,56 +331,54 @@ p { margin: 0 0 1em; }
 
 /* ---------- Contact ---------- */
 .contact { padding-top: 60px; }
-.contact-layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 4rem; align-items: start; }
+.contact-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 4rem; align-items: center; }
 .contact-intro h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; color: var(--teal-deep); }
-.contact-lead { font-size: 1.05rem; color: var(--muted); max-width: 32em; margin-bottom: 2.4rem; }
-.contact-subhead { font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 1.1rem; }
+.contact-lead { font-size: 1.05rem; color: var(--muted); max-width: 30em; margin-bottom: 2.2rem; }
 
-.quote-checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; max-width: 32rem; }
-.quote-checklist li {
-  display: flex; gap: 1rem; align-items: flex-start;
-  padding: 1rem 0; border-top: 1px solid #e3eef0;
-}
-.quote-checklist li:last-child { border-bottom: 1px solid #e3eef0; }
-.quote-checklist li > span {
-  flex: none; width: 30px; height: 30px; border-radius: 50%;
+.contact-direct { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
+.contact-direct a { display: flex; align-items: center; gap: 1rem; width: fit-content; max-width: 100%; }
+.contact-direct a > span:last-child { display: flex; flex-direction: column; min-width: 0; font-weight: 600; color: var(--teal-deep); word-break: break-word; transition: color .2s ease; }
+.contact-direct small { font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.contact-direct-icon {
+  flex: none; width: 46px; height: 46px; border-radius: 12px;
   display: grid; place-items: center;
-  background: #e5f5f7; color: var(--teal); font-size: .85rem; font-weight: 700;
+  background: #e5f5f7; color: var(--teal);
+  transition: background .2s ease, color .2s ease;
 }
-.quote-checklist strong { display: block; font-size: .98rem; color: var(--ink); }
-.quote-checklist div { font-size: .92rem; color: var(--muted); }
+.contact-direct-icon svg { width: 20px; height: 20px; fill: currentColor; }
+.contact-direct a:hover .contact-direct-icon { background: var(--teal); color: #fff; }
+.contact-direct a:hover > span:last-child { color: var(--teal); }
 
-.contact-panel {
-  position: relative;
-  padding: 2.4rem 2.2rem 2.2rem;
-  border-radius: 20px;
-  color: #fff;
-  background:
-    radial-gradient(rgba(255,255,255,.06) 1px, transparent 1.4px) 0 0 / 22px 22px,
-    linear-gradient(160deg, var(--teal-dark), var(--teal-deep));
-  box-shadow: 0 30px 60px -30px rgba(5, 61, 71, .6);
-  border-top: 4px solid var(--gold);
+.quote-form {
+  padding: 2.2rem 2.2rem 1.8rem;
+  background: #fff;
+  border: 1px solid #e2ebee;
+  border-top: 4px solid var(--teal);
+  border-radius: 18px;
+  box-shadow: 0 30px 60px -34px rgba(5, 61, 71, .45);
+  display: grid; gap: 1.1rem;
 }
-.contact-panel-label { margin: 0 0 .4rem; font-size: .75rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-light); }
-.contact-panel-name { margin: 0; font-size: 1.8rem; font-weight: 700; line-height: 1.2; }
-.contact-panel-role { margin: 0 0 1.6rem; font-size: .92rem; color: rgba(255,255,255,.7); }
-
-.contact-rows { list-style: none; margin: 0 0 1.8rem; padding: 0; }
-.contact-rows li { border-top: 1px solid rgba(255,255,255,.12); }
-.contact-rows li:last-child { border-bottom: 1px solid rgba(255,255,255,.12); }
-.contact-rows a { display: flex; align-items: center; gap: 1rem; padding: .95rem 0; transition: color .2s ease; }
-.contact-rows a:hover { color: var(--gold-light); }
-.contact-rows a > span:last-child { display: flex; flex-direction: column; min-width: 0; font-weight: 600; word-break: break-word; }
-.contact-rows small { font-size: .72rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.6); }
-.contact-row-icon {
-  flex: none; width: 40px; height: 40px; border-radius: 10px;
-  display: grid; place-items: center;
-  background: rgba(255,255,255,.1);
-  transition: background .2s ease;
+.quote-form-head h3 { margin: 0 0 .2rem; font-size: 1.3rem; color: var(--teal-deep); }
+.quote-form-head p { margin: 0; font-size: .9rem; color: var(--muted); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-field { display: grid; gap: .4rem; min-width: 0; }
+.form-field label { font-size: .82rem; font-weight: 600; color: var(--ink); }
+.form-field input, .form-field textarea {
+  width: 100%; min-width: 0;
+  padding: .75rem .9rem;
+  font: inherit; font-size: .95rem; color: var(--ink);
+  background: #f8fbfc;
+  border: 1px solid #d6e3e6; border-radius: 10px;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
 }
-.contact-row-icon svg { width: 19px; height: 19px; fill: currentColor; }
-.contact-rows a:hover .contact-row-icon { background: rgba(255,210,63,.2); }
-.contact-panel-btn { width: 100%; justify-content: center; }
+.form-field textarea { resize: vertical; min-height: 90px; }
+.form-field input::placeholder, .form-field textarea::placeholder { color: #9aa8b1; }
+.form-field input:focus, .form-field textarea:focus {
+  outline: none; background: #fff;
+  border-color: var(--teal); box-shadow: 0 0 0 3px rgba(14, 124, 140, .15);
+}
+.quote-form-btn { width: 100%; justify-content: center; margin-top: .3rem; }
+.quote-form-note { margin: 0; font-size: .8rem; color: var(--muted); text-align: center; }
 
 /* ---------- Footer ---------- */
 .footer {
@@ -470,11 +468,12 @@ p { margin: 0 0 1em; }
   .nav-link::after { display: none; }
   .nav-cta { margin-top: 1.2rem; }
   .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
-  .contact-panel { padding: 2rem 1.5rem 1.6rem; }
-  .contact-rows a > span:last-child { font-size: .9rem; }
+  .quote-form { padding: 1.8rem 1.3rem 1.5rem; }
+  .contact-direct a > span:last-child { font-size: .92rem; }
 }
 
 @media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
   .section { padding: 70px 0; }
   .sell { padding-bottom: 120px; }
   .hero { padding-bottom: 120px; }

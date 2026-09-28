@@ -58,6 +58,29 @@
     });
   }
 
+  // Quote form: keep the WhatsApp link in sync with what the visitor types
+  const quoteForm = document.getElementById('quoteForm');
+  const quoteSend = document.getElementById('quoteSend');
+  if (quoteForm && quoteSend) {
+    const baseUrl = 'https://wa.me/27833564891?text=';
+    const fields = [
+      ['qName', 'Name'], ['qCompany', 'Company'], ['qProducts', 'Products'],
+      ['qQty', 'Quantity'], ['qDate', 'Needed by']
+    ];
+    function buildLink() {
+      let msg = "Hi Karen, I'd like to request a quote from Pro-Star Trading.";
+      const lines = [];
+      fields.forEach(function (f) {
+        const v = document.getElementById(f[0]).value.trim();
+        if (v) lines.push(f[1] + ': ' + v);
+      });
+      if (lines.length) msg += '\n\n' + lines.join('\n');
+      quoteSend.href = baseUrl + encodeURIComponent(msg);
+    }
+    quoteForm.addEventListener('input', buildLink);
+    quoteForm.addEventListener('submit', function (e) { e.preventDefault(); quoteSend.click(); });
+  }
+
   // Active nav link on scroll
   const sections = ['home', 'what-we-sell', 'contact']
     .map(function (id) { return document.getElementById(id); });
