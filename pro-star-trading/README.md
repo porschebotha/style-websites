@@ -3,7 +3,7 @@
 Static one-page site (HTML, CSS, JavaScript) for Pro-Star Trading, Supplier of Promotional Products.
 
 ## Files
-- `index.html`: all page content (Home, What We Sell, Products, Contact, footer)
+- `index.html`: all page content (Home, What We Sell, Contact, footer)
 - `css/styles.css`: styles, colours (CSS variables at the top), animations and responsive rules
 - `js/main.js`: mobile menu, sticky nav, scroll fade-ins, active-link highlighting
 - `assets/favicon.svg`: star favicon

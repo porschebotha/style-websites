@@ -65,7 +65,7 @@
   }
 
   // Active nav link on scroll
-  const sections = ['home', 'what-we-sell', 'products', 'contact']
+  const sections = ['home', 'what-we-sell', 'contact']
     .map(function (id) { return document.getElementById(id); });
 
   if ('IntersectionObserver' in window) {
