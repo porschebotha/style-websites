@@ -39,7 +39,7 @@
     const io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.remove('pending');
           io.unobserve(entry.target);
         }
       });
@@ -55,9 +55,13 @@
       el.style.transitionDelay = (i * 0.12) + 's';
     });
 
-    faders.forEach(function (el) { io.observe(el); });
-  } else {
-    faders.forEach(function (el) { el.classList.add('visible'); });
+    // Only hide elements that start below the fold, so the first screen is complete at rest
+    faders.forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) {
+        el.classList.add('pending');
+        io.observe(el);
+      }
+    });
   }
 
   // Active nav link on scroll
