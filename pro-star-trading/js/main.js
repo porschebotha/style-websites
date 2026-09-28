@@ -45,12 +45,6 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    // Stagger siblings inside grids
-    document.querySelectorAll('.contact-grid').forEach(function (grid) {
-      grid.querySelectorAll('.fade-in').forEach(function (el, i) {
-        el.style.transitionDelay = (i * 0.1) + 's';
-      });
-    });
     document.querySelectorAll('.hero-center > .fade-in').forEach(function (el, i) {
       el.style.transitionDelay = (i * 0.12) + 's';
     });
