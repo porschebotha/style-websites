@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shop by Category</title>
+
+<!-- ============================================================
+     PROMO AFRICA CATEGORY GRID: copy from here ...
+     ============================================================ -->
+<!-- Font Awesome 6 (free icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" />
+
+<style>
+  /* All rules are scoped under .pa-categories so they won't clash with your site */
+  .pa-categories {
+    --pa-brand: #0e7c8c;       /* teal: icon + hover colour */
+    --pa-brand-dark: #075866;  /* heading colour */
+    --pa-accent: #f5b400;      /* gold: hover underline */
+    --pa-tile-bg: #ffffff;
+    --pa-icon-bg: #e8f4f6;     /* soft teal circle behind icons */
+    --pa-text: #1d2b36;
+    --pa-muted: #5d6d7a;
+    --pa-border: #dde9ec;
+    --pa-section-bg: #f4f9fa;
+
+    box-sizing: border-box;
+    padding: 64px 16px;
+    background: var(--pa-section-bg);
+    font-family: "Poppins", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    color: var(--pa-text);
+  }
+  .pa-categories *, .pa-categories *::before, .pa-categories *::after { box-sizing: border-box; }
+
+  .pa-categories__inner { max-width: 1180px; margin: 0 auto; }
+
+  .pa-categories__head { text-align: center; margin: 0 auto 40px; max-width: 620px; }
+  .pa-categories__eyebrow {
+    margin: 0 0 8px;
+    font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--pa-brand);
+  }
+  .pa-categories__title {
+    margin: 0 0 10px;
+    font-size: clamp(26px, 4vw, 36px); font-weight: 700; line-height: 1.2;
+    color: var(--pa-brand-dark);
+    text-wrap: balance;
+  }
+  .pa-categories__intro { margin: 0; font-size: 16px; line-height: 1.6; color: var(--pa-muted); }
+
+  .pa-grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .pa-tile {
+    position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    gap: 14px;
+    height: 100%;
+    padding: 28px 14px 24px;
+    background: var(--pa-tile-bg);
+    border: 1px solid var(--pa-border);
+    border-radius: 14px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--pa-text);
+    box-shadow: 0 2px 6px rgba(7, 88, 102, .06);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .pa-tile__icon {
+    width: 64px; height: 64px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    background: var(--pa-icon-bg);
+    color: var(--pa-brand);
+    font-size: 26px;
+    transition: background .25s ease, color .25s ease, transform .25s ease;
+  }
+  .pa-tile__name {
+    position: relative;
+    font-size: 15px; font-weight: 600; line-height: 1.35;
+    text-wrap: balance;
+    transition: color .25s ease;
+  }
+  .pa-tile__name::after {
+    content: ""; position: absolute; left: 50%; bottom: -6px;
+    width: 28px; height: 3px; border-radius: 3px;
+    background: var(--pa-accent);
+    transform: translateX(-50%) scaleX(0);
+    transition: transform .25s ease;
+  }
+
+  /* Hover / keyboard focus: lift + highlight */
+  .pa-tile:hover,
+  .pa-tile:focus-visible {
+    transform: translateY(-6px);
+    border-color: var(--pa-brand);
+    box-shadow: 0 14px 28px rgba(7, 88, 102, .16);
+  }
+  .pa-tile:hover .pa-tile__icon,
+  .pa-tile:focus-visible .pa-tile__icon {
+    background: var(--pa-brand);
+    color: #ffffff;
+    transform: scale(1.08);
+  }
+  .pa-tile:hover .pa-tile__name,
+  .pa-tile:focus-visible .pa-tile__name { color: var(--pa-brand); }
+  .pa-tile:hover .pa-tile__name::after,
+  .pa-tile:focus-visible .pa-tile__name::after { transform: translateX(-50%) scaleX(1); }
+  .pa-tile:focus-visible { outline: 3px solid var(--pa-accent); outline-offset: 3px; }
+
+  /* Responsive: 5 → 4 → 3 → 2 columns */
+  @media (max-width: 1080px) { .pa-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (max-width: 820px)  { .pa-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } }
+  @media (max-width: 560px)  {
+    .pa-categories { padding: 48px 16px; }
+    .pa-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .pa-tile { padding: 22px 10px 20px; gap: 12px; }
+    .pa-tile__icon { width: 54px; height: 54px; font-size: 22px; }
+    .pa-tile__name { font-size: 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pa-tile, .pa-tile__icon, .pa-tile__name, .pa-tile__name::after { transition: none; }
+    .pa-tile:hover, .pa-tile:focus-visible { transform: none; }
+    .pa-tile:hover .pa-tile__icon, .pa-tile:focus-visible .pa-tile__icon { transform: none; }
+  }
+</style>
+</head>
+<body style="margin:0">
+
+<section class="pa-categories" id="categories" aria-labelledby="pa-categories-title">
+  <div class="pa-categories__inner">
+    <div class="pa-categories__head">
+      <p class="pa-categories__eyebrow">Browse the catalogue</p>
+      <h2 class="pa-categories__title" id="pa-categories-title">Shop by Category</h2>
+      <p class="pa-categories__intro">Pick a category to see the full range of branded products on Promo Africa.</p>
+    </div>
+
+    <!-- Links open in a new tab so visitors keep your site open -->
+    <ul class="pa-grid">
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-clothing" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-shirt" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Corporate Clothing</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-gift" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Corporate Gifts</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/bags" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Bags</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/notebooks" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-book" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Notebooks</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/drinkware" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-bottle-water" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Drinkware &amp; Bottles</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/writing-instruments" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-pen" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Writing Instruments / Pens</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/outdoor-and-leisure" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-mountain-sun" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Outdoor &amp; Leisure</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/umbrellas" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-umbrella" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Umbrellas</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/display/outdoor-products/gazebos" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-tent" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Gazebos</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/sports-and-wellness" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-dumbbell" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Sports &amp; Wellness</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/home-and-living" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-house" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Home &amp; Living</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/coolers-and-lunchware" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-utensils" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Coolers &amp; Lunchware</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/technology" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-laptop" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Technology</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/tech-accessories" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-headphones" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Tech Accessories</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/stationery" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-paperclip" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Stationery</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/folders-and-portfolios" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-folder-open" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Folders &amp; Portfolios</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/promotional-giveaways" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Promotional Giveaways</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/golf" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-golf-ball-tee" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Golf</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/catalogue/corporate-gifts/custom-packaging" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-box-open" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Custom Packaging</span></a></li>
+
+      <li><a class="pa-tile" href="https://promoafrica.com/categories/display/outdoor-products" target="_blank" rel="noopener">
+        <span class="pa-tile__icon"><i class="fa-solid fa-sign-hanging" aria-hidden="true"></i></span>
+        <span class="pa-tile__name">Displays &amp; Outdoor Signage</span></a></li>
+    </ul>
+  </div>
+</section>
+<!-- ============================================================
+     ... to here.
+     ============================================================ -->
+
+</body>
+</html>
