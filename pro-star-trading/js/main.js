@@ -51,7 +51,7 @@
         el.style.transitionDelay = (i * 0.1) + 's';
       });
     });
-    document.querySelectorAll('.hero-content .fade-in').forEach(function (el, i) {
+    document.querySelectorAll('.hero-center > .fade-in').forEach(function (el, i) {
       el.style.transitionDelay = (i * 0.12) + 's';
     });
 
